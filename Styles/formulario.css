@@ -1,0 +1,30 @@
+.cadastro-form{
+  
+    border-radius: 5%;
+    width: fit-content; 
+    justify-content: flex-end;
+    margin: 0 auto;
+}
+.update-form{
+    
+    border-radius: 5%;
+    width: fit-content; 
+    justify-content: flex-start;
+    margin: 0 auto;
+
+
+}
+
+.h2-form{
+    padding-top: 20px;
+    font-weight: bold;
+    color: #255a8b;
+
+
+}
+.cadastro-form input_group{
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
