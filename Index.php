@@ -1,5 +1,5 @@
 <?php
-include('./Model/Databse.php');
+require_once('./Model/Databse.php');
 $db = new Database();
 
 //Cria as tabelas automaticamente 
