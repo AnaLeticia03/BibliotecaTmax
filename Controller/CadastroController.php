@@ -69,7 +69,7 @@ if (isset($_POST['codigo']) && isset($_POST['senha'])) {
 
     if (mysqli_num_rows($verifica)) {
         echo "usuário valido";
-        header("location: http://localhost/LivrariaTrabalho/View/admLivros.php ");
+        header("location: http://localhost/LivrariaTrabalho/View/admLivros.php");
     }else{
         header("location: http://localhost/LivrariaTrabalho/Index.php ");
     }
