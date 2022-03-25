@@ -16,7 +16,7 @@ if (isset($_POST['email-login']) && isset($_POST['senha-login'])) {
       
         header("location: http://localhost/LivrariaTrabalho/View/livros.php" . "?user_id={$user['id']}");
     }else{
-        header("location: http://localhost/LivrariaTrabalho/Index.php ");
+        header("location: http://localhost/LivrariaTrabalho/index.php ");
     }
 }
 
@@ -71,6 +71,6 @@ if (isset($_POST['codigo']) && isset($_POST['senha'])) {
         echo "usuário valido";
         header("location: http://localhost/LivrariaTrabalho/View/admLivros.php");
     }else{
-        header("location: http://localhost/LivrariaTrabalho/Index.php ");
+        header("location: http://localhost/LivrariaTrabalho/index.php ");
     }
 }

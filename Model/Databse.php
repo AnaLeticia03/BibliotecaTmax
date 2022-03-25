@@ -27,7 +27,7 @@ class Database extends Connection
         $sql = "UPDATE `usuarios` SET nome= '{$nome}', email = '{$email}', id_livro = {$id_livro}  WHERE id = {$id}";
         $this->conectionDB()->query($sql);
     }
-    
+
     //procura usuario pelo email e senha e retorna usuario
     public function fetchUsuario($email, $senha)
     {
@@ -35,7 +35,7 @@ class Database extends Connection
         $sql = "select * from usuarios where email = '{$email}' and  senha = '{$senha}'";
         return $this->conectionDB()->query($sql);
     }
-    
+
     //procura todos os usuarios para tabela
     public function fetchUsuarios()
     {
@@ -69,16 +69,16 @@ class Database extends Connection
         return $fetchUsuario->fetch_assoc();
     }
 
-       //Procura usuário a partir do ID
-       public function procuraUsuarioSenhaEmail($senha, $email)
-       {
-           $sql = "select * from usuarios WHERE senha ={$senha} and email = '{$email}' ";
-           $fetchUsuario = $this->conectionDB()->query($sql);
-   
-           return $fetchUsuario->fetch_assoc();
-       }
+    //Procura usuário a partir do ID
+    public function procuraUsuarioSenhaEmail($senha, $email)
+    {
+        $sql = "select * from usuarios WHERE senha ={$senha} and email = '{$email}' ";
+        $fetchUsuario = $this->conectionDB()->query($sql);
 
-//----------------------------------------------------------------------------------
+        return $fetchUsuario->fetch_assoc();
+    }
+
+    //----------------------------------------------------------------------------------
 
     //LIVRO
     public function insereLivro($nome, $autor, $editora, $genero, $qtd)
@@ -140,7 +140,6 @@ class Database extends Connection
 
         $this->conectionDB()->query($sql1);
         $this->conectionDB()->query($sql2);
-
     }
     public function devolver($user_id, $livro_id, $qtd)
     {
@@ -149,10 +148,9 @@ class Database extends Connection
 
         $this->conectionDB()->query($sql1);
         $this->conectionDB()->query($sql2);
-
     }
 
-//----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
 
     //ADM
     //insere um administrador no banco
@@ -230,7 +228,8 @@ class Database extends Connection
     // INIT
     public function init()
     {
-       $table_admin = "CREATE TABLE if not exists `adm` (
+        $createDatabase = "CREATE DATABASE bibliotecatmax;";
+        $table_admin = "CREATE TABLE if not exists `adm` (
         `id` int unsigned NOT NULL AUTO_INCREMENT,
         `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `nome` varchar(255) COLLATE utf8mb4_bin NOT NULL,
@@ -239,7 +238,7 @@ class Database extends Connection
         PRIMARY KEY (`id`)
       ) ENGINE = MyISAM AUTO_INCREMENT = 4 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;";
 
-       $table_user = "CREATE TABLE if not exists  `usuarios` (
+        $table_user = "CREATE TABLE if not exists  `usuarios` (
         `id` int unsigned NOT NULL AUTO_INCREMENT,
         `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `nome` char(50) COLLATE utf8mb4_bin NOT NULL,
@@ -249,7 +248,7 @@ class Database extends Connection
         PRIMARY KEY (`id`)
       ) ENGINE = MyISAM AUTO_INCREMENT = 8 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;";
 
-       $table_livros = "CREATE TABLE if not exists `livros` (
+        $table_livros = "CREATE TABLE if not exists `livros` (
         `id` int NOT NULL AUTO_INCREMENT,
         `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `nome` varchar(100) COLLATE utf8mb4_bin NOT NULL,
@@ -260,17 +259,16 @@ class Database extends Connection
         PRIMARY KEY (`id`)
       ) ENGINE = MyISAM AUTO_INCREMENT = 4 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_bin;";
 
-      $date = date('Y-m-d H:i:s');
-      $insertAdm="INSERT INTO `adm` VALUES  
+        $date = date('Y-m-d H:i:s');
+        $insertAdm = "INSERT INTO `adm` VALUES  
       (NULL, '{$date}', 'Admin', '00000000000' ,'admin')";
 
-      $this->conectionDB()->query($table_admin);
-      $this->conectionDB()->query($table_user);
-      $this->conectionDB()->query($table_livros);
-      if($this->procuraAdmSenhaCpf('admin', '00000000000') == FALSE){
-        $this->conectionDB()->query($insertAdm);
-      }
-      
-
+        $this->conectionDB()->query($createDatabase);
+        $this->conectionDB()->query($table_admin);
+        $this->conectionDB()->query($table_user);
+        $this->conectionDB()->query($table_livros);
+        if ($this->procuraAdmSenhaCpf('admin', '00000000000') == FALSE) {
+            $this->conectionDB()->query($insertAdm);
+        }
     }
 }

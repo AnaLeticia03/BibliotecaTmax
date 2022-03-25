@@ -16,7 +16,7 @@
         <img src="../Assets/logopng.png" alt="Logo da página">
         <ul>
             <li>
-                <a href="../Index.php"> <button class="btn">Acessar como Usuário</button></a>
+                <a href="../index.php"> <button class="btn">Acessar como Usuário</button></a>
             </li>
         </ul>
         <hr>
